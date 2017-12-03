@@ -65,4 +65,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             currentIndex = page
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let point = scrollView.contentOffset;
+        let percentComplete = fabs(point.x - self.view.frame.size.width)/self.view.frame.size.width * 100
+        print("\(scrollView.contentOffset.x) \(view.frame.size.width)")
+        print(percentComplete)
+    }
 }
