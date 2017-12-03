@@ -1,13 +1,13 @@
 
 import UIKit
 
-protocol SwitchPageProtocol {
+protocol SwitchPageProtocol: class {
     func pageToSwitch(to page: Int)
 }
 
 class ViewController: UIViewController, SwitchHighlightedButtonDelegate {
 
-    var switchPageDelegate: SwitchPageProtocol?
+    weak var switchPageDelegate: SwitchPageProtocol?
     
     var lineView: UIView!
     
@@ -36,5 +36,9 @@ class ViewController: UIViewController, SwitchHighlightedButtonDelegate {
     func highlight(buttonNumber: Int) {
         lineView.removeFromSuperview()
         buttons[buttonNumber].addSubview(lineView)
+    }
+    
+    deinit {
+        print("deinit \(type(of: self))")
     }
 }

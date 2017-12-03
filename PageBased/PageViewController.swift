@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol SwitchHighlightedButtonDelegate {
+protocol SwitchHighlightedButtonDelegate: class {
     func highlight(buttonNumber: Int)
 }
 
@@ -10,7 +10,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var pages: [UIViewController]!
     var currentIndex = 0
     
-    var highlightDelegate: SwitchHighlightedButtonDelegate?
+    weak var highlightDelegate: SwitchHighlightedButtonDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +67,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let point = scrollView.contentOffset;
-        let percentComplete = fabs(point.x - self.view.frame.size.width)/self.view.frame.size.width * 100
-        print("\(scrollView.contentOffset.x) \(view.frame.size.width)")
-        print(percentComplete)
+//        let point = scrollView.contentOffset;
+//        let percentComplete = fabs(point.x - self.view.frame.size.width)/self.view.frame.size.width * 100
+//        print("\(scrollView.contentOffset.x) \(view.frame.size.width)")
+//        print(percentComplete)
+    }
+    
+    deinit {
+        print("deinit \(type(of: self))")
     }
 }
